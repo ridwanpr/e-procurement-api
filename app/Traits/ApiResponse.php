@@ -3,6 +3,8 @@
 namespace App\Traits;
 
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
 trait ApiResponse
 {
@@ -11,11 +13,19 @@ trait ApiResponse
     string $message = '',
     int $code = 200
   ): JsonResponse {
-    return response()->json([
+    $response_data = [
       'success' => true,
       'message' => $message,
-      'data' => $data
-    ], $code);
+    ];
+
+    if ($data instanceof ResourceCollection && $data->resource instanceof \Illuminate\Pagination\LengthAwarePaginator) {
+      $paginatedData = $data->response()->getData(true);
+      $response_data = array_merge($response_data, $paginatedData);
+    } elseif ($data) {
+      $response_data['data'] = $data;
+    }
+
+    return response()->json($response_data, $code);
   }
 
   public function errorResponse(
