@@ -9,7 +9,7 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 trait ApiResponse
 {
   public function successResponse(
-    mixed $data,
+    mixed $data = null,
     string $message = '',
     int $code = 200
   ): JsonResponse {

@@ -48,7 +48,6 @@ class AuthController extends Controller
 
         return $this->successResponse(
             message: 'User logged out successfully',
-            data: null,
         );
     }
 }
