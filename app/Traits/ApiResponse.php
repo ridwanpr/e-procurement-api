@@ -21,9 +21,10 @@ trait ApiResponse
     if ($data instanceof ResourceCollection && $data->resource instanceof \Illuminate\Pagination\LengthAwarePaginator) {
       $paginatedData = $data->response()->getData(true);
       $response_data = array_merge($response_data, $paginatedData);
-    } elseif ($data) {
+    } elseif (!is_null($data)) {
       $response_data['data'] = $data;
     }
+
 
     return response()->json($response_data, $code);
   }

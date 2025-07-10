@@ -21,6 +21,7 @@ class VendorFactory extends Factory
             'name' => fake()->name(),
             'address' => fake()->address(),
             'phone_number' => fake()->phoneNumber(),
+            'user_id' => UserFactory::new(),
         ];
     }
 }
