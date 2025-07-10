@@ -7,7 +7,7 @@ use App\Traits\ApiResponse;
 use App\Services\ProductService;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\ProductResource;
+use App\Http\Resources\V1\ProductResource;
 use App\Http\Requests\Api\V1\StoreProductRequest;
 use App\Http\Requests\Api\V1\UpdateProductRequest;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
